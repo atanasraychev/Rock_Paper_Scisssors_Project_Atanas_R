@@ -2,8 +2,11 @@ from colorama import Fore, Back, Style
 import random
 
 game_restart = "Yes"
+player_wins = 0
+computer_wins = 0
+draw_results = 0
 
-while game_restart == 'Yes':
+while game_restart == 'Yes' or game_restart == 'yes':
 
     input_check = 1
 
@@ -23,7 +26,8 @@ while game_restart == 'Yes':
             player_choice = "Scissors"
             input_check = 0
         else:
-            print("Wrong choice! Try again - 1, 2 or 3 :)\n")
+            print(Back.RED + "Wrong choice! Try again - 1, 2 or 3")
+            print(Style.RESET_ALL)
 
     computer_list = ["Rock", "Paper", "Scissors"]
 
@@ -33,21 +37,32 @@ while game_restart == 'Yes':
     print(f'Computer\'s choice : {computer_choice}')
 
     if computer_choice == computer_list[0] and player_choice == "Paper":
+        player_wins += 1
         print(Fore.GREEN + "Player Wins")
     if computer_choice == computer_list[0] and player_choice == "Scissors":
+        computer_wins += 1
         print(Fore.RED +"Computer wins")
     elif computer_choice == computer_list[1] and player_choice == "Rock":
+        computer_wins += 1
         print(Fore.RED + "Computer wins")
     elif computer_choice == computer_list[1] and player_choice == "Scissors":
+        player_wins += 1
         print(Fore.GREEN + "Player wins")
     elif computer_choice == computer_list[2] and player_choice == "Rock":
+        player_wins += 1
         print(Fore.GREEN + "Player wins")
     elif computer_choice == computer_list[2] and player_choice == "Paper":
+        computer_wins += 1
         print(Fore.RED + "Computer wins")
     elif computer_choice == player_choice:
+        draw_results += 1
         print(Fore.YELLOW + "Draw")
 
     print(Style.RESET_ALL)
+    print(f'The score is : \n'
+          f'Player : {player_wins}\n'
+          f'Computer : {computer_wins}\n'
+          f'Draw : {draw_results}')
     print("Do you want to play again? - Yes or No?")
 
     game_restart = input()
@@ -55,4 +70,4 @@ while game_restart == 'Yes':
     if game_restart == 'No':
         break
 
-print('Thanks for playing')
+print('Thanks for playing !!!')
